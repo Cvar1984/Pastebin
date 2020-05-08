@@ -55,8 +55,9 @@ class PasteBin
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         // curl_setopt($ch, CURLOPT_NOBODY, 0);
-        return curl_exec($ch);
+        $exec = curl_exec($ch);
         curl_close($ch);
+        return $exec;
     }
 
     public static function paste(string $code, string $name, string $syntax)
@@ -85,4 +86,4 @@ $name = trim($name);
 
 $syntax = pathinfo($name, PATHINFO_EXTENSION);
 
-echo PasteBin::paste($code, $name, $syntax).PHP_EOL;
+echo PasteBin::paste($code, $name, $syntax) . PHP_EOL;
